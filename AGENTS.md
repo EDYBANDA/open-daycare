@@ -37,9 +37,10 @@ Known issue: `npm run lint` fails with 2 pre-existing errors in `references/pant
 
 ## Spec workflow
 
-- Repo-local skills drive feature work: `/spec` (`.agents/skills/spec`) and `/spec-impl` (`.agents/skills/spec-impl`).
+- Repo-local skills drive feature work: `/spec` (`.agents/skills/spec`), `/spec-impl` (`.agents/skills/spec-impl`) and `/spec-verify` (`.opencode/command/spec-verify.md`).
 - `/spec` writes `specs/NN-slug.md` with state `Draft`; only the user flips it to `Approved`.
 - `/spec-impl` requires an Approved spec, then creates and switches to a `spec-NN-slug` branch (`specs/.spec-config.yml` defaults `AutoCreateBranch: true`).
+- `/spec-verify` runs the `spec-verifier` agent (`.opencode/agent/spec-verifier.md`): verifies each Acceptance criteria item, fixes minor issues, re-verifies, and marks passing checks in the spec file.
 
 ## MCPs
 
@@ -50,6 +51,7 @@ Known issue: `npm run lint` fails with 2 pre-existing errors in `references/pant
 
 -/spec Usaremos esta habilidad para crear las especificaciones.
 -/spec-impl Usaremos esta skill para hacer las implementaciones.
+-/spec-verify Usaremos este comando para verificar los criterios de aceptación de una spec con el agente spec-verifier.
 
 ## Reglas de código
 

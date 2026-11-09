@@ -1,6 +1,6 @@
 # SPEC 01 — Feed estático como home
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** ninguna
 > **Fecha:** 2026-11-06
 > **Objetivo:** Implementar la pantalla del feed de `references/pantallas/feed.dc.html` como home `/` de la app, con estilo visualmente idéntico al mockup, sin autenticación ni base de datos.
@@ -86,15 +86,15 @@ Los valores internos de `PostKind` están en inglés (`achievement`, `activity`,
 
 ## Criterios de aceptación
 
-- [ ] `npm run lint` no agrega errores (los 2 preexistentes de `references/pantallas/support.js` siguen siendo los únicos).
-- [ ] `npm run build` completa sin errores.
-- [ ] `/` renderiza sidebar fijo de 248px + feed centrado de max-width 760px sobre fondo `#F6ECDF`, sin más rutas que `/`.
-- [ ] Títulos y nombres usan Fredoka; el resto usa Nunito (verificable en DevTools, sin fallback a fuente del sistema).
-- [ ] Los 3 posts aparecen con badges LOGRO (`#CFEBD8`/`#3E9B6C`), ACTIVIDAD (`#C7E7F1`/`#2E89A6`) y ANUNCIO (`#CCD8F4`/`#4E72C8`), corazones 3/5/8 y comentarios 1/2/0.
-- [ ] Los valores internos de `PostKind` son `achievement` | `activity` | `announcement`; los badges renderizan «LOGRO», «ACTIVIDAD» y «ANUNCIO».
-- [ ] El post de actividad muestra el placeholder dashed «Foto · pintando con témperas».
-- [ ] Ningún link del sidebar ni de los posts navega fuera de `/` (salvo el logo, que apunta a `/`).
-- [ ] Captura desktop (1280×800) visualmente idéntica a `references/screenshots/feed.png` en layout, colores, tipografía y espaciados.
+- [x] `npm run lint` no agrega errores (los 2 preexistentes de `references/pantallas/support.js` siguen siendo los únicos).
+- [x] `npm run build` completa sin errores.
+- [x] `/` renderiza sidebar fijo de 248px + feed centrado de max-width 760px sobre fondo `#F6ECDF`, sin más rutas que `/`.
+- [x] Títulos y nombres usan Fredoka; el resto usa Nunito (verificable en DevTools, sin fallback a fuente del sistema).
+- [x] Los 3 posts aparecen con badges LOGRO (`#CFEBD8`/`#3E9B6C`), ACTIVIDAD (`#C7E7F1`/`#2E89A6`) y ANUNCIO (`#CCD8F4`/`#4E72C8`), corazones 3/5/8 y comentarios 1/2/0.
+- [x] Los valores internos de `PostKind` son `achievement` | `activity` | `announcement`; los badges renderizan «LOGRO», «ACTIVIDAD» y «ANUNCIO».
+- [x] El post de actividad muestra el placeholder dashed «Foto · pintando con témperas».
+- [x] Ningún link del sidebar ni de los posts navega fuera de `/` (salvo el logo, que apunta a `/`).
+- [x] Captura desktop (1280×800) visualmente idéntica a `references/screenshots/feed.png` en layout, colores, tipografía y espaciados.
 
 ## Decisiones
 
