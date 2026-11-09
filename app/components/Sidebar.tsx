@@ -1,17 +1,29 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { currentUser, room } from "@/app/data/feed";
 
-const navItems = [
+export type SidebarActive = "feed" | "kids";
+
+type NavItem = {
+  id: "feed" | "kids" | "notices" | "account";
+  label: string;
+  href?: string;
+  icon: ReactNode;
+};
+
+const navItems: NavItem[] = [
   {
+    id: "feed",
     label: "Feed",
-    active: true,
+    href: "/",
     icon: (
       <path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" />
     ),
   },
   {
+    id: "kids",
     label: "Niños",
-    active: false,
+    href: "/kids",
     icon: (
       <>
         <circle cx="9" cy="7" r="3" />
@@ -21,15 +33,15 @@ const navItems = [
     ),
   },
   {
+    id: "notices",
     label: "Avisos",
-    active: false,
     icon: (
       <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0" />
     ),
   },
   {
+    id: "account",
     label: "Mi cuenta",
-    active: false,
     icon: (
       <>
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -39,7 +51,7 @@ const navItems = [
   },
 ];
 
-export function Sidebar() {
+export function Sidebar({ active }: { active: SidebarActive }) {
   return (
     <aside className="sticky top-0 flex h-screen w-[248px] shrink-0 flex-col border-r border-[#ECE0D0] bg-[#FFFDF9] px-4 py-6">
       <Link
@@ -86,15 +98,12 @@ export function Sidebar() {
       </a>
 
       <nav className="flex flex-1 flex-col gap-1">
-        {navItems.map((item) => (
-          <a
-            key={item.label}
-            className={
-              item.active
-                ? "flex items-center gap-3 rounded-xl bg-[#FBE3D8] px-3 py-[11px] text-[14.5px] font-extrabold text-[#D9583C]"
-                : "flex items-center gap-3 rounded-xl px-3 py-[11px] text-[14.5px] font-semibold text-[#6E6359]"
-            }
-          >
+        {navItems.map((item) => {
+          const className =
+            item.id === active
+              ? "flex items-center gap-3 rounded-xl bg-[#FBE3D8] px-3 py-[11px] text-[14.5px] font-extrabold text-[#D9583C]"
+              : "flex items-center gap-3 rounded-xl px-3 py-[11px] text-[14.5px] font-semibold text-[#6E6359]";
+          const icon = (
             <svg
               width="19"
               height="19"
@@ -107,9 +116,19 @@ export function Sidebar() {
             >
               {item.icon}
             </svg>
-            {item.label}
-          </a>
-        ))}
+          );
+          return item.href ? (
+            <Link key={item.id} href={item.href} className={className}>
+              {icon}
+              {item.label}
+            </Link>
+          ) : (
+            <a key={item.id} className={className}>
+              {icon}
+              {item.label}
+            </a>
+          );
+        })}
       </nav>
 
       <div className="mt-2.5 border-t border-[#ECE0D0] pt-3.5">
