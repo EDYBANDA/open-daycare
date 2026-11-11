@@ -63,3 +63,8 @@
  GET /kids/valentina 200 in 81ms (next.js: 2ms, generate-params: 11ms, application-code: 68ms)
 ✓ Compiled in 70ms
 ✓ Compiled in 99ms
+✓ Compiled in 114ms
+✓ Compiled in 119ms
+ GET / 200 in 83ms (next.js: 4ms, application-code: 79ms)
+ GET / 200 in 70ms (next.js: 1.4ms, application-code: 68ms)
+ GET / 200 in 53ms (next.js: 3ms, application-code: 50ms)
