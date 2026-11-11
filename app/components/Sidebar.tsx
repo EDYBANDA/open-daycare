@@ -104,10 +104,10 @@ export function Sidebar({ active }: { active: SidebarActive }) {
 
       <nav className="flex flex-1 flex-col gap-1">
         {navItems.map((item) => {
-          const className =
-            item.id === active
-              ? "flex items-center gap-3 rounded-xl bg-[#FBE3D8] px-3 py-[11px] text-[14.5px] font-extrabold text-[#D9583C]"
-              : "flex items-center gap-3 rounded-xl px-3 py-[11px] text-[14.5px] font-semibold text-[#6E6359]";
+          const isActive = item.id === active;
+          const className = isActive
+            ? "flex items-center gap-3 rounded-xl bg-[#FBE3D8] px-3 py-[11px] text-[14.5px] font-extrabold text-[#D9583C]"
+            : "flex items-center gap-3 rounded-xl px-3 py-[11px] text-[14.5px] font-semibold text-[#6E6359]";
           const icon = (
             <svg
               width="19"
@@ -122,11 +122,20 @@ export function Sidebar({ active }: { active: SidebarActive }) {
               {item.icon}
             </svg>
           );
+          // Feed and Niños are real links; Avisos and Mi cuenta are inert (out of scope)
+          if (item.id === "feed" || item.id === "kids") {
+            return (
+              <Link key={item.id} href={item.href} className={className}>
+                {icon}
+                {item.label}
+              </Link>
+            );
+          }
           return (
-            <Link key={item.id} href={item.href} className={className}>
+            <a key={item.id} className={className}>
               {icon}
               {item.label}
-            </Link>
+            </a>
           );
         })}
       </nav>

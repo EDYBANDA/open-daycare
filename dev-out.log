@@ -1,0 +1,21 @@
+▲ Next.js 16.4.5 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.18.7:3000
+✓ Ready in 582ms
+✓ Running next.config.ts took 62ms
+- Cache Components enabled
+- Partial Prefetching enabled
+- Experiments (use with caution):
+  ✓ agentFeedback
+
+ GET / 200 in 534ms (next.js: 248ms, application-code: 286ms)
+ GET /kids 200 in 69ms (next.js: 15ms, application-code: 54ms)
+ GET /kids 200 in 45ms (next.js: 2ms, application-code: 43ms)
+ GET / 200 in 42ms (next.js: 1.9ms, application-code: 40ms)
+ GET /kids 200 in 44ms (next.js: 2ms, application-code: 41ms)
+ GET /kids/lucas 200 in 611ms (next.js: 14ms, generate-params: 543ms, application-code: 54ms)
+ GET / 200 in 52ms (next.js: 1.5ms, application-code: 51ms)
+ GET /kids 200 in 60ms (next.js: 1.6ms, application-code: 58ms)
+ GET /kids/mateo 200 in 77ms (next.js: 2ms, generate-params: 9ms, application-code: 66ms)
+ GET /kids/sofia 200 in 66ms (next.js: 2ms, generate-params: 0.0ms, application-code: 64ms)
+ GET /kids/pepe 404 in 75ms (next.js: 3ms, generate-params: 10ms, application-code: 61ms)
