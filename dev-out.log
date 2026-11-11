@@ -1,0 +1,50 @@
+▲ Next.js 16.4.5 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.18.7:3000
+✓ Ready in 582ms
+✓ Running next.config.ts took 62ms
+- Cache Components enabled
+- Partial Prefetching enabled
+- Experiments (use with caution):
+  ✓ agentFeedback
+
+ GET / 200 in 534ms (next.js: 248ms, application-code: 286ms)
+ GET /kids 200 in 69ms (next.js: 15ms, application-code: 54ms)
+ GET /kids 200 in 45ms (next.js: 2ms, application-code: 43ms)
+ GET / 200 in 42ms (next.js: 1.9ms, application-code: 40ms)
+ GET /kids 200 in 44ms (next.js: 2ms, application-code: 41ms)
+ GET /kids/lucas 200 in 611ms (next.js: 14ms, generate-params: 543ms, application-code: 54ms)
+ GET / 200 in 52ms (next.js: 1.5ms, application-code: 51ms)
+ GET /kids 200 in 60ms (next.js: 1.6ms, application-code: 58ms)
+ GET /kids/mateo 200 in 77ms (next.js: 2ms, generate-params: 9ms, application-code: 66ms)
+ GET /kids/sofia 200 in 66ms (next.js: 2ms, generate-params: 0.0ms, application-code: 64ms)
+ GET /kids/pepe 404 in 75ms (next.js: 3ms, generate-params: 10ms, application-code: 61ms)
+ GET / 200 in 49ms (next.js: 1.9ms, application-code: 47ms)
+ GET /kids 200 in 42ms (next.js: 1.7ms, application-code: 40ms)
+ GET /kids/mateo 200 in 71ms (next.js: 3ms, generate-params: 9ms, application-code: 59ms)
+ GET / 200 in 36ms (next.js: 1.9ms, application-code: 34ms)
+ GET /kids 200 in 41ms (next.js: 2ms, application-code: 39ms)
+ GET /kids/benjamin 200 in 54ms (next.js: 1.9ms, generate-params: 9ms, application-code: 43ms)
+ GET /kids 200 in 40ms (next.js: 2ms, application-code: 38ms)
+ GET /kids/emma 200 in 56ms (next.js: 1.7ms, generate-params: 9ms, application-code: 45ms)
+✓ Compiled in 47ms
+ GET /kids/emma 200 in 71ms (next.js: 6ms, generate-params: 10ms, application-code: 55ms)
+ GET /kids/emma 200 in 101ms (next.js: 2ms, generate-params: 11ms, application-code: 88ms)
+ GET / 200 in 36ms (next.js: 1.6ms, application-code: 35ms)
+ GET /kids 200 in 35ms (next.js: 1.8ms, application-code: 33ms)
+ GET /kids 200 in 62ms (next.js: 1.6ms, application-code: 60ms)
+ GET /kids/mateo 200 in 56ms (next.js: 2.0ms, generate-params: 9ms, application-code: 44ms)
+ GET /kids/mateo 200 in 75ms (next.js: 1.4ms, generate-params: 9ms, application-code: 65ms)
+ GET /kids/mateo 200 in 86ms (next.js: 3ms, generate-params: 11ms, application-code: 71ms)
+ GET /kids/mateo 200 in 77ms (next.js: 1.9ms, generate-params: 9ms, application-code: 67ms)
+ GET /kids/mateo 200 in 78ms (next.js: 1.6ms, generate-params: 9ms, application-code: 67ms)
+ GET /kids/mateo 200 in 78ms (next.js: 1.4ms, generate-params: 10ms, application-code: 67ms)
+ GET /kids/mateo 200 in 66ms (next.js: 1.6ms, generate-params: 9ms, application-code: 56ms)
+✓ Compiled in 90ms
+ GET /kids/mateo 200 in 62ms (next.js: 1.3ms, generate-params: 9ms, application-code: 52ms)
+ GET / 200 in 69ms (next.js: 1.3ms, application-code: 67ms)
+ GET /kids/mateo 200 in 64ms (next.js: 1.5ms, generate-params: 9ms, application-code: 54ms)
+ GET /kids/mateo 200 in 80ms (next.js: 2ms, generate-params: 9ms, application-code: 69ms)
+ GET / 200 in 40ms (next.js: 1.8ms, application-code: 38ms)
+ GET /kids 200 in 36ms (next.js: 1.6ms, application-code: 35ms)
+ GET /kids/valentina 200 in 45ms (next.js: 1.9ms, generate-params: 9ms, application-code: 34ms)
