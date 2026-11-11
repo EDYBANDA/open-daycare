@@ -1,6 +1,6 @@
 # SPEC 02 — Lista y perfil de niños (UI estática)
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** SPEC 01
 > **Fecha:** 2026-11-09
 > **Objetivo:** Implementar las pantallas `ninos.dc.html` (lista) y `perfil-nino.dc.html` (perfil) como rutas `/kids` y `/kids/[id]` con datos mock y estilo idéntico al mockup, sin backend ni interactividad.
@@ -85,16 +85,16 @@ Convenciones:
 
 ## Criterios de aceptación
 
-- [ ] `npm run lint` no agrega errores (los 2 preexistentes de `support.js` siguen siendo los únicos) y `npm run build` completa sin errores.
-- [ ] `/` se ve idéntica a SPEC 01 (Feed activo) y su link «Niños» navega a `/kids`.
-- [ ] `/kids` muestra el sidebar con «Niños» activo, el buscador visual, el divisor «SALA SOLES · 8 niños» y la grilla de 2 columnas con los 8 niños en el orden del mockup.
-- [ ] Cada tarjeta muestra avatar con inicial/color del mockup, subtítulo correcto y elemento lateral correcto (MANÍ en Mateo, LACTOSA en Tomás, VINCULAR en Valentina, chevron en el resto).
-- [ ] El hover de una tarjeta aplica borde `#F2A78E` y elevación `translateY(-2px)`.
-- [ ] Las tarjetas navegan a `/kids/[id]` y cada perfil muestra los datos de ese niño (nombre, edad, sala, nacimiento, ingreso, padres).
-- [ ] `/kids/mateo` reproduce `perfil-nino.dc.html`: caja «Alergias y notas» con el texto exacto, filas «12 mar 2022» / «Soles» / «feb 2025», Lucía con ACTIVA, Diego con PENDIENTE y «Vincular otro padre».
-- [ ] Un niño sin `allergyNote` (p. ej. Sofía) no renderiza la caja de alergias.
-- [ ] Un id inexistente (p. ej. `/kids/pepe`) devuelve 404.
-- [ ] «Agregar niño», «Editar», «Resumen del día», «Vincular otro padre» y el logout se renderizan pero no navegan.
+- [x] `npm run lint` no agrega errores (los 2 preexistentes de `support.js` siguen siendo los únicos) y `npm run build` completa sin errores.
+- [x] `/` se ve idéntica a SPEC 01 (Feed activo) y su link «Niños» navega a `/kids`.
+- [x] `/kids` muestra el sidebar con «Niños» activo, el buscador visual, el divisor «SALA SOLES · 8 niños» y la grilla de 2 columnas con los 8 niños en el orden del mockup.
+- [x] Cada tarjeta muestra avatar con inicial/color del mockup, subtítulo correcto y elemento lateral correcto (MANÍ en Mateo, LACTOSA en Tomás, VINCULAR en Valentina, chevron en el resto).
+- [x] El hover de una tarjeta aplica borde `#F2A78E` y elevación `translateY(-2px)`.
+- [x] Las tarjetas navegan a `/kids/[id]` y cada perfil muestra los datos de ese niño (nombre, edad, sala, nacimiento, ingreso, padres).
+- [x] `/kids/mateo` reproduce `perfil-nino.dc.html`: caja «Alergias y notas» con el texto exacto, filas «12 mar 2022» / «Soles» / «feb 2025», Lucía con ACTIVA, Diego con PENDIENTE y «Vincular otro padre».
+- [x] Un niño sin `allergyNote` (p. ej. Sofía) no renderiza la caja de alergias.
+- [x] Un id inexistente (p. ej. `/kids/pepe`) devuelve 404.
+- [x] «Agregar niño», «Editar», «Resumen del día», «Vincular otro padre» y el logout se renderizan pero no navegan.
 
 ## Decisiones
 
