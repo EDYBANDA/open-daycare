@@ -54,3 +54,10 @@
 ✓ Compiled in 172ms
  GET /kids/valentina 404 in 40ms (next.js: 11ms, application-code: 29ms)
  GET /kids/valentina 404 in 47ms (next.js: 8ms, application-code: 40ms)
+✓ Compiled in 277ms
+ GET /kids/valentina 200 in 229ms (next.js: 7ms, generate-params: 11ms, application-code: 212ms)
+ GET /kids/valentina 200 in 303ms (next.js: 3ms, generate-params: 0.1ms, application-code: 299ms)
+ GET /kids/valentina 200 in 109ms (next.js: 5ms, generate-params: 0.1ms, application-code: 104ms)
+ GET /kids/valentina 200 in 296ms (next.js: 51ms, generate-params: 0.1ms, application-code: 245ms)
+ GET /kids/valentina 200 in 344ms (next.js: 31ms, generate-params: 0.1ms, application-code: 313ms)
+ GET /kids/valentina 200 in 81ms (next.js: 2ms, generate-params: 11ms, application-code: 68ms)
