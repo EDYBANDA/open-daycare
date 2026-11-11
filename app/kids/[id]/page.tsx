@@ -11,6 +11,7 @@ export function generateStaticParams() {
 export default async function KidProfilePage(
   props: PageProps<"/kids/[id]">,
 ) {
+  "use cache";
   const { id } = await props.params;
   const kid = kids.find((k) => k.id === id);
   if (!kid) notFound();
