@@ -1,6 +1,6 @@
 # SPEC 02 — Lista y perfil de niños (UI estática)
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** SPEC 01
 > **Fecha:** 2026-11-09
 > **Objetivo:** Implementar las pantallas `ninos.dc.html` (lista) y `perfil-nino.dc.html` (perfil) como rutas `/kids` y `/kids/[id]` con datos mock y estilo idéntico al mockup, sin backend ni interactividad.

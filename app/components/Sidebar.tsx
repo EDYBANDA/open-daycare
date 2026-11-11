@@ -7,7 +7,7 @@ export type SidebarActive = "feed" | "kids";
 type NavItem = {
   id: "feed" | "kids" | "notices" | "account";
   label: string;
-  href?: string;
+  href: string;
   icon: ReactNode;
 };
 
@@ -35,6 +35,7 @@ const navItems: NavItem[] = [
   {
     id: "notices",
     label: "Avisos",
+    href: "/avisos",
     icon: (
       <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0" />
     ),
@@ -42,6 +43,7 @@ const navItems: NavItem[] = [
   {
     id: "account",
     label: "Mi cuenta",
+    href: "/mi-cuenta",
     icon: (
       <>
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -81,7 +83,10 @@ export function Sidebar({ active }: { active: SidebarActive }) {
         </div>
       </Link>
 
-      <a className="mb-[18px] flex w-full items-center justify-center gap-2 rounded-[14px] bg-[linear-gradient(180deg,#F4977E,#EE8164)] p-3 text-[14.5px] font-extrabold text-white shadow-[0_8px_18px_-8px_rgba(238,129,100,.75)]">
+      <Link
+        href="/crear-publicacion"
+        className="mb-[18px] flex w-full items-center justify-center gap-2 rounded-[14px] bg-[linear-gradient(180deg,#F4977E,#EE8164)] p-3 text-[14.5px] font-extrabold text-white shadow-[0_8px_18px_-8px_rgba(238,129,100,.75)]"
+      >
         <svg
           width="17"
           height="17"
@@ -95,7 +100,7 @@ export function Sidebar({ active }: { active: SidebarActive }) {
           <path d="M12 5v14M5 12h14" />
         </svg>
         Nueva publicación
-      </a>
+      </Link>
 
       <nav className="flex flex-1 flex-col gap-1">
         {navItems.map((item) => {
@@ -117,16 +122,11 @@ export function Sidebar({ active }: { active: SidebarActive }) {
               {item.icon}
             </svg>
           );
-          return item.href ? (
+          return (
             <Link key={item.id} href={item.href} className={className}>
               {icon}
               {item.label}
             </Link>
-          ) : (
-            <a key={item.id} className={className}>
-              {icon}
-              {item.label}
-            </a>
           );
         })}
       </nav>
@@ -142,7 +142,8 @@ export function Sidebar({ active }: { active: SidebarActive }) {
             </div>
             <div className="text-[12px] text-[#A89A8B]">{currentUser.role}</div>
           </div>
-          <a
+          <button
+            type="button"
             title="Cerrar sesión"
             className="flex size-8 shrink-0 items-center justify-center rounded-[10px] bg-[#F6ECDF] text-[#94887B]"
           >
@@ -158,7 +159,7 @@ export function Sidebar({ active }: { active: SidebarActive }) {
             >
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" />
             </svg>
-          </a>
+          </button>
         </div>
       </div>
     </aside>
