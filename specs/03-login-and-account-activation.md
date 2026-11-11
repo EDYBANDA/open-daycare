@@ -1,6 +1,6 @@
 # SPEC 03 — Login y activación de cuenta (UI estática)
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** SPEC 01, SPEC 02
 > **Fecha:** 2026-11-11
 > **Objetivo:** Implementar las pantallas `login.dc.html` (sin el selector «INGRESO COMO Personal/Familia») y `activar-cuenta.dc.html` como rutas estáticas `/login` y `/activar-cuenta`, y conectar el logout del sidebar a `/login`, sin autenticación real.
@@ -44,17 +44,17 @@ Esta feature no introduce estructuras de datos nuevas. Todo el contenido (emails
 
 ## Criterios de aceptación
 
-- [ ] `npm run lint` no agrega errores (los 2 preexistentes de `support.js` siguen siendo los únicos) y `npm run build` completa sin errores.
-- [ ] `/login` renderiza las dos columnas del mockup: panel de marca con gradiente `155deg` y círculos decorativos, formulario de max-width 392px centrado, sin sidebar.
-- [ ] `/login` NO muestra «INGRESO COMO» ni los botones «Personal» y «Familia».
-- [ ] El email aparece precargado con `caro@opendaycare.com` y la contraseña muestra el placeholder `••••••••`.
-- [ ] «¿Olvidaste tu contraseña?» se renderiza pero no navega.
-- [ ] El botón «Iniciar sesión» navega a `/` y «Activá tu cuenta» navega a `/activar-cuenta`.
-- [ ] `/activar-cuenta` replica el mockup: tile de icono, «Bienvenida a OpenDayCare», tarjeta «Mateo · Sala Soles», código `7K4P9` (Fredoka, tracking 3px), email `lucia.fernandez@gmail.com`, contraseña y checkbox de autorización marcado.
-- [ ] «Activar mi cuenta» se renderiza pero no navega; «Iniciar sesión» (pie) navega a `/login`.
-- [ ] Ni `/login` ni `/activar-cuenta` renderizan el sidebar.
-- [ ] El icono «Cerrar sesión» navega a `/login` desde `/` y `/kids`, sin cambios visuales en esas pantallas.
-- [ ] Capturas desktop (1280×800) de ambas rutas visualmente idénticas a los `.dc.html` renderizados en layout, colores, tipografía y espaciados.
+- [x] `npm run lint` no agrega errores (los 2 preexistentes de `support.js` siguen siendo los únicos) y `npm run build` completa sin errores.
+- [x] `/login` renderiza las dos columnas del mockup: panel de marca con gradiente `155deg` y círculos decorativos, formulario de max-width 392px centrado, sin sidebar.
+- [x] `/login` NO muestra «INGRESO COMO» ni los botones «Personal» y «Familia».
+- [x] El email aparece precargado con `caro@opendaycare.com` y la contraseña muestra el placeholder `••••••••`.
+- [x] «¿Olvidaste tu contraseña?» se renderiza pero no navega.
+- [x] El botón «Iniciar sesión» navega a `/` y «Activá tu cuenta» navega a `/activar-cuenta`.
+- [x] `/activar-cuenta` replica el mockup: tile de icono, «Bienvenida a OpenDayCare», tarjeta «Mateo · Sala Soles», código `7K4P9` (Fredoka, tracking 3px), email `lucia.fernandez@gmail.com`, contraseña y checkbox de autorización marcado.
+- [x] «Activar mi cuenta» se renderiza pero no navega; «Iniciar sesión» (pie) navega a `/login`.
+- [x] Ni `/login` ni `/activar-cuenta` renderizan el sidebar.
+- [x] El icono «Cerrar sesión» navega a `/login` desde `/` y `/kids`, sin cambios visuales en esas pantallas.
+- [x] Capturas desktop (1280×800) de ambas rutas visualmente idénticas a los `.dc.html` renderizados en layout, colores, tipografía y espaciados.
 
 ## Decisiones
 
