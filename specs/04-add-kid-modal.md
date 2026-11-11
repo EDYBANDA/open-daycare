@@ -1,6 +1,6 @@
 # SPEC 04 — Modal Agregar niño (UI estática)
 
-> **Estado:** Borrador
+> **Estado:** Aprobado
 > **Depende de:** SPEC 02
 > **Fecha:** 2026-11-11
 > **Objetivo:** Implementar la pantalla `agregar-nino.dc.html` como un modal que se abre al pulsar «Agregar niño» en `/kids`, con sus 5 campos y cierre por overlay/Esc/Cancelar/Guardar, sin guardar nada.
@@ -70,11 +70,11 @@ Esta feature no introduce estructuras de datos nuevas. Labels, placeholders y va
 
 ## Riesgos
 
-| Riesgo                                                    | Mitigación                                                             |
-| --------------------------------------------------------- | ----------------------------------------------------------------------- |
-| Select nativo renderiza flecha propia según navegador      | `appearance-none` total + chevron SVG del mockup; verificado en captura |
-| No existe screenshot PNG de `agregar-nino`                 | Comparación contra el `.dc.html` renderizado (patrón SPEC 02/03)       |
-| El modal solo se monta tras interacción (hidratación)      | El overlay no existe en el HTML inicial; no hay mismatch posible       |
+| Riesgo                                                | Mitigación                                                              |
+| ----------------------------------------------------- | ----------------------------------------------------------------------- |
+| Select nativo renderiza flecha propia según navegador | `appearance-none` total + chevron SVG del mockup; verificado en captura |
+| No existe screenshot PNG de `agregar-nino`            | Comparación contra el `.dc.html` renderizado (patrón SPEC 02/03)        |
+| El modal solo se monta tras interacción (hidratación) | El overlay no existe en el HTML inicial; no hay mismatch posible        |
 
 ## Lo que **no** está en esta spec
 
