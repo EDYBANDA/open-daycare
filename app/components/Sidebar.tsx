@@ -151,8 +151,8 @@ export function Sidebar({ active }: { active: SidebarActive }) {
             </div>
             <div className="text-[12px] text-[#A89A8B]">{currentUser.role}</div>
           </div>
-          <button
-            type="button"
+          <Link
+            href="/login"
             title="Cerrar sesión"
             className="flex size-8 shrink-0 items-center justify-center rounded-[10px] bg-[#F6ECDF] text-[#94887B]"
           >
@@ -168,7 +168,7 @@ export function Sidebar({ active }: { active: SidebarActive }) {
             >
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" />
             </svg>
-          </button>
+          </Link>
         </div>
       </div>
     </aside>
