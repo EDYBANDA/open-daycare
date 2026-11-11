@@ -1,6 +1,6 @@
 # SPEC 04 — Modal Agregar niño (UI estática)
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** SPEC 02
 > **Fecha:** 2026-11-11
 > **Objetivo:** Implementar la pantalla `agregar-nino.dc.html` como un modal que se abre al pulsar «Agregar niño» en `/kids`, con sus 5 campos y cierre por overlay/Esc/Cancelar/Guardar, sin guardar nada.
