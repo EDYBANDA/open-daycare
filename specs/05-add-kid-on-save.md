@@ -53,15 +53,15 @@ Persistencia: array JSON de objetos `Kid` bajo `KIDS_STORAGE_KEY`. Sin migració
 
 ## Criterios de aceptación
 
-- [ ] `npm run lint` no agrega errores (los 2 preexistentes de `support.js` siguen siendo los únicos) y `npm run build` completa sin errores.
-- [ ] Guardar con nombre vacío muestra error en NOMBRE COMPLETO (borde + mensaje) y el modal no cierra.
-- [ ] Guardar con fecha incompleta, calendario imposible o futura muestra su error y el modal no cierra.
-- [ ] Guardar con datos válidos cierra el modal y el niño aparece al final de la grilla con initial, «X años» correctos, chip de alergia en MAYÚSCULAS si hay etiquetas, y colores de la paleta existente.
-- [ ] El contador pasa de «8 niños» a «9 niños».
-- [ ] Tras F5 el niño persiste en localStorage y no se duplica.
-- [ ] La tarjeta del niño nuevo no navega; las de los estáticos siguen navegando a su perfil.
-- [ ] Reabrir el modal muestra los campos vacíos.
-- [ ] «31/02/2024» sigue rechazada (regresión del fix de máscara).
+- [x] `npm run lint` no agrega errores (los 2 preexistentes de `support.js` siguen siendo los únicos) y `npm run build` completa sin errores.
+- [x] Guardar con nombre vacío muestra error en NOMBRE COMPLETO (borde + mensaje) y el modal no cierra.
+- [x] Guardar con fecha incompleta, calendario imposible o futura muestra su error y el modal no cierra.
+- [x] Guardar con datos válidos cierra el modal y el niño aparece al final de la grilla con initial, «X años» correctos, chip de alergia en MAYÚSCULAS si hay etiquetas, y colores de la paleta existente.
+- [x] El contador pasa de «8 niños» a «9 niños».
+- [x] Tras F5 el niño persiste en localStorage y no se duplica.
+- [x] La tarjeta del niño nuevo no navega; las de los estáticos siguen navegando a su perfil.
+- [x] Reabrir el modal muestra los campos vacíos.
+- [x] «31/02/2024» sigue rechazada (regresión del fix de máscara).
 
 ## Decisiones
 
