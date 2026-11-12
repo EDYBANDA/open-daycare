@@ -40,17 +40,17 @@ Esta feature no introduce estructuras de datos nuevas. Labels, placeholders y va
 
 ## Criterios de aceptación
 
-- [ ] `npm run lint` no agrega errores (los 2 preexistentes de `support.js` siguen siendo los únicos) y `npm run build` completa sin errores.
-- [ ] `/kids` con el modal cerrado es visualmente idéntico a SPEC 02 (mismo header, buscador, divisor y grilla de 8).
-- [ ] Click en «Agregar niño» abre el modal con el overlay `rgba(63,54,46,.45)` cubriendo el viewport y el fondo sin scroll mientras está abierto.
-- [ ] El card replica el mockup: header Cancelar/título/Guardar, labels 12px tracking .7px `#94887B`, inputs radius 14px borde 1.5px `#EADFD0`, placeholders exactos de los 4 campos.
-- [ ] FECHA DE NACIMIENTO y SALA están en una fila de 2 columnas (gap 14px) y SALA es un `<select>` nativo `appearance-none` con «Soles» en peso 700 + chevron del mockup.
-- [ ] NOTAS MÉDICAS es un textarea de min-height 90px con `resize: vertical`.
-- [ ] Al abrir, overlay y card aparecen con fade (+scale 0.97→1) de ~180ms; el cierre es instantáneo.
-- [ ] El modal cierra con «Cancelar», «Guardar», Esc y click en overlay; un click dentro del card no lo cierra.
-- [ ] Tras cerrar, `/kids` queda igual: 8 niños, sin navegación ni datos agregados.
-- [ ] El card tiene `role="dialog"`, `aria-modal="true"` y `aria-label="Agregar niño"`.
-- [ ] Captura 1280×800 del modal abierto coincide con `agregar-nino.dc.html` renderizado en layout, colores, tipografía y espaciados.
+- [x] `npm run lint` no agrega errores (los 2 preexistentes de `support.js` siguen siendo los únicos) y `npm run build` completa sin errores.
+- [x] `/kids` con el modal cerrado es visualmente idéntico a SPEC 02 (mismo header, buscador, divisor y grilla de 8).
+- [x] Click en «Agregar niño» abre el modal con el overlay `rgba(63,54,46,.45)` cubriendo el viewport y el fondo sin scroll mientras está abierto.
+- [x] El card replica el mockup: header Cancelar/título/Guardar, labels 12px tracking .7px `#94887B`, inputs radius 14px borde 1.5px `#EADFD0`, placeholders exactos de los 4 campos.
+- [x] FECHA DE NACIMIENTO y SALA están en una fila de 2 columnas (gap 14px) y SALA es un `<select>` nativo `appearance-none` con «Soles» en peso 700 + chevron del mockup.
+- [x] NOTAS MÉDICAS es un textarea de min-height 90px con `resize: vertical`.
+- [x] Al abrir, overlay y card aparecen con fade (+scale 0.97→1) de ~180ms; el cierre es instantáneo.
+- [x] El modal cierra con «Cancelar», «Guardar», Esc y click en overlay; un click dentro del card no lo cierra.
+- [x] Tras cerrar, `/kids` queda igual: 8 niños, sin navegación ni datos agregados.
+- [x] El card tiene `role="dialog"`, `aria-modal="true"` y `aria-label="Agregar niño"`.
+- [x] Captura 1280×800 del modal abierto coincide con `agregar-nino.dc.html` renderizado en layout, colores, tipografía y espaciados.
 
 ## Decisiones
 
