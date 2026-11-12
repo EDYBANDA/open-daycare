@@ -1,6 +1,6 @@
 # SPEC 06 — Vincular padre (modal con invitación persistida)
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** SPEC 02
 > **Fecha:** 2026-11-12
 > **Objetivo:** Implementar `vincular-padre.dc.html` como modal que abre «Vincular otro padre» en el perfil del niño, con código aleatorio por apertura y envío que agrega un padre PENDIENTE persistido en localStorage.
