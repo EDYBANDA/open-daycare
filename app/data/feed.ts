@@ -1,4 +1,11 @@
-export type PostKind = "achievement" | "activity" | "announcement";
+export type PostKind =
+  | "achievement"
+  | "activity"
+  | "announcement"
+  | "meal"
+  | "mood"
+  | "nap"
+  | "photo";
 
 export type FeedPost = {
   id: string;
@@ -9,6 +16,7 @@ export type FeedPost = {
   audience: string;
   body: string;
   photoLabel?: string;
+  photos?: string[];
   hearts: number;
   comments: number;
 };
