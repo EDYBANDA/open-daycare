@@ -1,6 +1,6 @@
 # SPEC 07 — Crear publicación (modal desde «Nueva publicación»)
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** SPEC 01, SPEC 02, SPEC 05
 > **Fecha:** 2026-11-12
 > **Objetivo:** Implementar `crear-publicacion.dc.html` como modal que abre el botón «Nueva publicación» del Sidebar, con publicación persistida en localStorage que aparece en el feed.
