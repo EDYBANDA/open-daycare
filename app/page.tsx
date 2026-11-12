@@ -1,8 +1,7 @@
 import { Sidebar } from "@/app/components/Sidebar";
 import { FeedHeader } from "@/app/components/FeedHeader";
 import { QuickCreateCard } from "@/app/components/QuickCreateCard";
-import { PostCard } from "@/app/components/PostCard";
-import { feedPosts } from "@/app/data/feed";
+import { FeedList } from "@/app/components/FeedList";
 
 export default function Home() {
   return (
@@ -18,11 +17,7 @@ export default function Home() {
             </span>
             <span className="h-px flex-1 bg-[#E7DAC8]" />
           </div>
-          <div className="flex flex-col gap-4">
-            {feedPosts.map((post) => (
-              <PostCard key={post.id} post={post} />
-            ))}
-          </div>
+          <FeedList />
         </div>
       </main>
     </div>

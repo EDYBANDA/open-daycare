@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
+import { CreatePostModal } from "@/app/components/CreatePostModal";
 import { currentUser, room } from "@/app/data/feed";
 
 export type SidebarActive = "feed" | "kids";
@@ -54,8 +57,11 @@ const navItems: NavItem[] = [
 ];
 
 export function Sidebar({ active }: { active: SidebarActive }) {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
-    <aside className="sticky top-0 flex h-screen w-[248px] shrink-0 flex-col border-r border-[#ECE0D0] bg-[#FFFDF9] px-4 py-6">
+    <>
+      <aside className="sticky top-0 flex h-screen w-[248px] shrink-0 flex-col border-r border-[#ECE0D0] bg-[#FFFDF9] px-4 py-6">
       <Link
         href="/"
         className="flex items-center gap-[11px] px-2 pb-[22px] pt-1"
@@ -83,9 +89,10 @@ export function Sidebar({ active }: { active: SidebarActive }) {
         </div>
       </Link>
 
-      <Link
-        href="/crear-publicacion"
-        className="mb-[18px] flex w-full items-center justify-center gap-2 rounded-[14px] bg-[linear-gradient(180deg,#F4977E,#EE8164)] p-3 text-[14.5px] font-extrabold text-white shadow-[0_8px_18px_-8px_rgba(238,129,100,.75)]"
+      <button
+        type="button"
+        onClick={() => setModalOpen(true)}
+        className="mb-[18px] flex w-full cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-[linear-gradient(180deg,#F4977E,#EE8164)] p-3 text-[14.5px] font-extrabold text-white shadow-[0_8px_18px_-8px_rgba(238,129,100,.75)]"
       >
         <svg
           width="17"
@@ -100,7 +107,7 @@ export function Sidebar({ active }: { active: SidebarActive }) {
           <path d="M12 5v14M5 12h14" />
         </svg>
         Nueva publicación
-      </Link>
+      </button>
 
       <nav className="flex flex-1 flex-col gap-1">
         {navItems.map((item) => {
@@ -171,6 +178,11 @@ export function Sidebar({ active }: { active: SidebarActive }) {
           </Link>
         </div>
       </div>
-    </aside>
+      </aside>
+
+      {modalOpen && (
+        <CreatePostModal onClose={() => setModalOpen(false)} />
+      )}
+    </>
   );
 }

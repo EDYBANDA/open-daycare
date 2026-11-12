@@ -30,6 +30,34 @@ const kindConfig: Record<PostKind, KindConfig> = {
     dotClass: "bg-[#4E72C8]",
     avatarClass: "bg-[#CCD8F4] text-[#4E72C8]",
   },
+  meal: {
+    label: "COMIDA",
+    badgeClass: "bg-[#F4EAD0]",
+    badgeTextClass: "text-[#9A7B1E]",
+    dotClass: "bg-[#9A7B1E]",
+    avatarClass: "bg-[#F4EAD0] text-[#9A7B1E]",
+  },
+  mood: {
+    label: "ÁNIMO",
+    badgeClass: "bg-[#F9D2DE]",
+    badgeTextClass: "text-[#C56486]",
+    dotClass: "bg-[#C56486]",
+    avatarClass: "bg-[#F9D2DE] text-[#C56486]",
+  },
+  nap: {
+    label: "SIESTA",
+    badgeClass: "bg-[#E7DCF6]",
+    badgeTextClass: "text-[#7B5FC0]",
+    dotClass: "bg-[#7B5FC0]",
+    avatarClass: "bg-[#E7DCF6] text-[#7B5FC0]",
+  },
+  photo: {
+    label: "FOTO",
+    badgeClass: "bg-[#FBD8CC]",
+    badgeTextClass: "text-[#D9684A]",
+    dotClass: "bg-[#D9684A]",
+    avatarClass: "bg-[#FBD8CC] text-[#D9684A]",
+  },
 };
 
 export function PostCard({ post }: { post: FeedPost }) {
@@ -100,6 +128,27 @@ export function PostCard({ post }: { post: FeedPost }) {
           </svg>
           <span className="text-[13.5px]">{post.photoLabel}</span>
         </a>
+      ) : null}
+
+      {post.photos && post.photos.length > 0 ? (
+        post.photos.length === 1 ? (
+          <img
+            src={post.photos[0]}
+            alt={`Foto de ${post.authorName}`}
+            className="mt-3.5 h-[200px] w-full rounded-2xl object-cover"
+          />
+        ) : (
+          <div className="mt-3.5 grid grid-cols-2 gap-2">
+            {post.photos.map((photo, index) => (
+              <img
+                key={`${index}-${photo.length}`}
+                src={photo}
+                alt={`Foto ${index + 1} de ${post.authorName}`}
+                className="aspect-square w-full rounded-2xl object-cover"
+              />
+            ))}
+          </div>
+        )
       ) : null}
 
       <div className="mt-4 flex items-center gap-[18px] border-t border-[#F0E6D8] pt-3.5">
