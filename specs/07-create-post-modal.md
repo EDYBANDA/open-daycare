@@ -67,18 +67,18 @@ Persistencia: array JSON de `StoredPost` bajo `POSTS_STORAGE_KEY`. Sin migració
 
 ## Criterios de aceptación
 
-- [ ] `npm run lint` no agrega errores (los 2 preexistentes de `support.js` siguen siendo los únicos) y `npm run build` completa sin errores.
-- [ ] El botón «Nueva publicación» del Sidebar abre el modal en todas las páginas donde vive; «Cancelar», Esc y click en overlay cierran; click dentro del card no; scroll-lock activo.
-- [ ] El modal replica el mockup: header con los 3 actions, secciones PARA/TIPO/DESCRIPCIÓN/FOTOS con labels 12px `#94887B` y tipografía Fredoka en títulos.
-- [ ] PARA muestra los 8 niños estáticos con sus iniciales/colores + «Toda la sala»; selección múltiple; «Toda la sala» deselecciona niños y elegir un niño deselecciona «Toda la sala».
-- [ ] TIPO muestra 7 pills; la seleccionada es sólida con texto blanco y las demás pastel; «Comida» viene seleccionada; solo una a la vez.
-- [ ] Publicar con descripción vacía muestra error en línea (borde `#D9583C` + mensaje 12px) y el modal no cierra.
-- [ ] Arrastrar imágenes sobre la zona FOTOS las agrega como thumbs con preview (reescaladas); click en «Agregar» abre el selector; «×» quita una foto.
-- [ ] Publicar con datos válidos cierra el modal y la publicación aparece arriba del feed con badge y autor correctos; corazones/comentarios en 0.
-- [ ] Tras F5 la publicación persiste en `opendaycare:posts:v1` sin duplicarse.
-- [ ] Reabrir el modal muestra el formulario reseteado (sin niños, sin Toda la sala, Comida, descripción vacía, sin fotos).
-- [ ] QuickCreateCard sigue inerte y el card del modal tiene `role="dialog"`, `aria-modal="true"` y `aria-label="Nueva publicación"`.
-- [ ] Captura 1280×800 del modal abierto coincide con `crear-publicacion.dc.html` renderizado en layout, colores, tipografía y espaciados.
+- [x] `npm run lint` no agrega errores (los 2 preexistentes de `support.js` siguen siendo los únicos) y `npm run build` completa sin errores.
+- [x] El botón «Nueva publicación» del Sidebar abre el modal en todas las páginas donde vive; «Cancelar», Esc y click en overlay cierran; click dentro del card no; scroll-lock activo.
+- [x] El modal replica el mockup: header con los 3 actions, secciones PARA/TIPO/DESCRIPCIÓN/FOTOS con labels 12px `#94887B` y tipografía Fredoka en títulos.
+- [x] PARA muestra los 8 niños estáticos con sus iniciales/colores + «Toda la sala»; selección múltiple; «Toda la sala» deselecciona niños y elegir un niño deselecciona «Toda la sala».
+- [x] TIPO muestra 7 pills; la seleccionada es sólida con texto blanco y las demás pastel; «Comida» viene seleccionada; solo una a la vez.
+- [x] Publicar con descripción vacía muestra error en línea (borde `#D9583C` + mensaje 12px) y el modal no cierra.
+- [x] Arrastrar imágenes sobre la zona FOTOS las agrega como thumbs con preview (reescaladas); click en «Agregar» abre el selector; «×» quita una foto.
+- [x] Publicar con datos válidos cierra el modal y la publicación aparece arriba del feed con badge y autor correctos; corazones/comentarios en 0.
+- [x] Tras F5 la publicación persiste en `opendaycare:posts:v1` sin duplicarse.
+- [x] Reabrir el modal muestra el formulario reseteado (sin niños, sin Toda la sala, Comida, descripción vacía, sin fotos).
+- [x] QuickCreateCard sigue inerte y el card del modal tiene `role="dialog"`, `aria-modal="true"` y `aria-label="Nueva publicación"`.
+- [x] Captura 1280×800 del modal abierto coincide con `crear-publicacion.dc.html` renderizado en layout, colores, tipografía y espaciados.
 
 ## Decisiones
 

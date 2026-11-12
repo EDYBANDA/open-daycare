@@ -235,7 +235,7 @@ export function CreatePostModal({ onClose }: { onClose: () => void }) {
           >
             {form.photos.map((photo, index) => (
               <div
-                key={photo}
+                key={`${index}-${photo.length}`}
                 className="relative size-24 overflow-hidden rounded-[14px] border border-[#ECE0D0] bg-[#F4ECE1]"
               >
                 <img

@@ -141,7 +141,7 @@ export function PostCard({ post }: { post: FeedPost }) {
           <div className="mt-3.5 grid grid-cols-2 gap-2">
             {post.photos.map((photo, index) => (
               <img
-                key={photo}
+                key={`${index}-${photo.length}`}
                 src={photo}
                 alt={`Foto ${index + 1} de ${post.authorName}`}
                 className="aspect-square w-full rounded-2xl object-cover"
