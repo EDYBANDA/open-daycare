@@ -6,9 +6,51 @@ const fieldLabel =
   "mb-2 text-[12px] font-extrabold tracking-[0.7px] text-[#94887B]";
 const fieldControl =
   "w-full rounded-[14px] border-[1.5px] border-[#EADFD0] bg-white px-4 py-[13px] text-[15px] text-[#3F362E] outline-none placeholder:text-[#B6A99B]";
+const fieldError = "border-[#D9583C]! placeholder:text-[#D9583C]!";
+
+function isValidDate(dd: number, mm: number, yyyy: number): boolean {
+  const date = new Date(yyyy, mm - 1, dd);
+  return (
+    date.getFullYear() === yyyy &&
+    date.getMonth() === mm - 1 &&
+    date.getDate() === dd
+  );
+}
 
 export function AddKidModal() {
   const [open, setOpen] = useState(false);
+  const [birthDate, setBirthDate] = useState("");
+  const [birthDateError, setBirthDateError] = useState("");
+
+  const handleBirthDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const cursorPos = e.target.selectionStart || 0;
+    const raw = e.target.value;
+    const digits = raw.replace(/\D/g, "").slice(0, 8);
+    let formatted = digits;
+    if (digits.length > 2) formatted = digits.slice(0, 2) + "/" + digits.slice(2);
+    if (digits.length > 4) formatted = formatted.slice(0, 5) + "/" + digits.slice(4);
+    setBirthDate(formatted);
+
+    const diff = formatted.length - raw.length;
+    requestAnimationFrame(() => {
+      const newPos = Math.min(cursorPos + diff, formatted.length);
+      e.target.setSelectionRange(newPos, newPos);
+    });
+
+    if (formatted.length === 10) {
+      const parts = formatted.split("/");
+      const dd = parseInt(parts[0], 10);
+      const mm = parseInt(parts[1], 10);
+      const yyyy = parseInt(parts[2], 10);
+      if (!isValidDate(dd, mm, yyyy)) {
+        setBirthDateError("Fecha inválida");
+      } else {
+        setBirthDateError("");
+      }
+    } else {
+      setBirthDateError("");
+    }
+  };
 
   useEffect(() => {
     if (!open) return;
@@ -91,7 +133,17 @@ export function AddKidModal() {
               <div className="mb-[18px] flex gap-[14px]">
                 <div className="flex-1">
                   <div className={fieldLabel}>FECHA DE NACIMIENTO</div>
-                  <input placeholder="dd/mm/aaaa" className={fieldControl} />
+                  <input
+                    value={birthDate}
+                    onChange={handleBirthDateChange}
+                    placeholder="dd/mm/aaaa"
+                    className={`${fieldControl} ${birthDateError ? fieldError : ""}`}
+                  />
+                  {birthDateError && (
+                    <span className="mt-1 block text-[12px] text-[#D9583C]">
+                      {birthDateError}
+                    </span>
+                  )}
                 </div>
                 <div className="flex-1">
                   <div className={fieldLabel}>SALA</div>
