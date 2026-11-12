@@ -1,12 +1,23 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { Kid } from "@/app/data/kids";
+import { buildKidFromForm, validateKidForm } from "@/app/lib/kids";
 
 const fieldLabel =
   "mb-2 text-[12px] font-extrabold tracking-[0.7px] text-[#94887B]";
 const fieldControl =
   "w-full rounded-[14px] border-[1.5px] border-[#EADFD0] bg-white px-4 py-[13px] text-[15px] text-[#3F362E] outline-none placeholder:text-[#B6A99B]";
 const fieldError = "border-[#D9583C]! placeholder:text-[#D9583C]!";
+const fieldMessage = "mt-1 block text-[12px] text-[#D9583C]";
+
+const emptyForm = {
+  name: "",
+  birthDate: "",
+  room: "soles",
+  allergies: "",
+  medicalNotes: "",
+};
 
 function isValidDate(dd: number, mm: number, yyyy: number): boolean {
   const date = new Date(yyyy, mm - 1, dd);
@@ -17,10 +28,21 @@ function isValidDate(dd: number, mm: number, yyyy: number): boolean {
   );
 }
 
-export function AddKidModal() {
+export function AddKidModal({
+  onSave,
+  kidCount = 0,
+}: {
+  onSave?: (kid: Kid) => void;
+  kidCount?: number;
+}) {
   const [open, setOpen] = useState(false);
-  const [birthDate, setBirthDate] = useState("");
+  const [form, setForm] = useState(emptyForm);
+  const [nameError, setNameError] = useState("");
   const [birthDateError, setBirthDateError] = useState("");
+
+  const setField = (field: keyof typeof emptyForm, value: string) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+  };
 
   const handleBirthDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const cursorPos = e.target.selectionStart || 0;
@@ -29,7 +51,7 @@ export function AddKidModal() {
     let formatted = digits;
     if (digits.length > 2) formatted = digits.slice(0, 2) + "/" + digits.slice(2);
     if (digits.length > 4) formatted = formatted.slice(0, 5) + "/" + digits.slice(4);
-    setBirthDate(formatted);
+    setField("birthDate", formatted);
 
     const diff = formatted.length - raw.length;
     requestAnimationFrame(() => {
@@ -52,6 +74,25 @@ export function AddKidModal() {
     }
   };
 
+  const openModal = () => {
+    setForm(emptyForm);
+    setNameError("");
+    setBirthDateError("");
+    setOpen(true);
+  };
+
+  const closeModal = () => setOpen(false);
+
+  const handleSave = () => {
+    const errors = validateKidForm(form);
+    setNameError(errors.name ?? "");
+    setBirthDateError(errors.birthDate ?? "");
+    if (errors.name || errors.birthDate) return;
+    onSave?.(buildKidFromForm(form, kidCount));
+    setForm(emptyForm);
+    closeModal();
+  };
+
   useEffect(() => {
     if (!open) return;
 
@@ -59,7 +100,7 @@ export function AddKidModal() {
     document.body.style.overflow = "hidden";
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") closeModal();
     };
     window.addEventListener("keydown", handleKeyDown);
 
@@ -73,7 +114,7 @@ export function AddKidModal() {
     <>
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={openModal}
         className="flex cursor-pointer items-center gap-2 rounded-[14px] bg-[linear-gradient(180deg,#F4977E,#EE8164)] px-[18px] py-[11px] text-[14.5px] font-extrabold text-white shadow-[0_8px_18px_-8px_rgba(238,129,100,.7)]"
       >
         <svg
@@ -93,7 +134,7 @@ export function AddKidModal() {
 
       {open && (
         <div
-          onClick={() => setOpen(false)}
+          onClick={closeModal}
           className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-[rgba(63,54,46,.45)] p-[40px_24px] animate-modal-overlay-in"
         >
           <div
@@ -106,7 +147,7 @@ export function AddKidModal() {
             <div className="flex items-center justify-between border-b border-[#ECE0D0] px-[26px] py-5">
               <button
                 type="button"
-                onClick={() => setOpen(false)}
+          onClick={closeModal}
                 className="cursor-pointer text-[15px] font-bold text-[#94887B]"
               >
                 Cancelar
@@ -116,7 +157,7 @@ export function AddKidModal() {
               </span>
               <button
                 type="button"
-                onClick={() => setOpen(false)}
+                onClick={handleSave}
                 className="cursor-pointer text-[15px] font-extrabold text-[#D9583C]"
               >
                 Guardar
@@ -124,33 +165,42 @@ export function AddKidModal() {
             </div>
 
             <div className="px-[26px] py-6">
-              <div className={fieldLabel}>NOMBRE COMPLETO</div>
-              <input
-                placeholder="Ej. Martina López"
-                className={`${fieldControl} mb-[18px]`}
-              />
+              <div className="mb-[18px]">
+                <div className={fieldLabel}>NOMBRE COMPLETO</div>
+                <input
+                  value={form.name}
+                  onChange={(e) => {
+                    setField("name", e.target.value);
+                    setNameError("");
+                  }}
+                  placeholder="Ej. Martina López"
+                  className={`${fieldControl} ${nameError ? fieldError : ""}`}
+                />
+                {nameError && (
+                  <span className={fieldMessage}>{nameError}</span>
+                )}
+              </div>
 
               <div className="mb-[18px] flex gap-[14px]">
                 <div className="flex-1">
                   <div className={fieldLabel}>FECHA DE NACIMIENTO</div>
                   <input
-                    value={birthDate}
+                    value={form.birthDate}
                     onChange={handleBirthDateChange}
                     placeholder="dd/mm/aaaa"
                     className={`${fieldControl} ${birthDateError ? fieldError : ""}`}
                   />
                   {birthDateError && (
-                    <span className="mt-1 block text-[12px] text-[#D9583C]">
-                      {birthDateError}
-                    </span>
+                    <span className={fieldMessage}>{birthDateError}</span>
                   )}
                 </div>
                 <div className="flex-1">
                   <div className={fieldLabel}>SALA</div>
                   <div className="relative">
                     <select
+                      value={form.room}
+                      onChange={(e) => setField("room", e.target.value)}
                       className={`${fieldControl} cursor-pointer appearance-none pr-10 font-bold`}
-                      defaultValue="soles"
                     >
                       <option value="soles">Soles</option>
                     </select>
@@ -173,12 +223,16 @@ export function AddKidModal() {
 
               <div className={fieldLabel}>ALERGIAS (ETIQUETAS)</div>
               <input
+                value={form.allergies}
+                onChange={(e) => setField("allergies", e.target.value)}
                 placeholder="Ej. Maní, Lactosa"
                 className={`${fieldControl} mb-[18px]`}
               />
 
               <div className={fieldLabel}>NOTAS MÉDICAS</div>
               <textarea
+                value={form.medicalNotes}
+                onChange={(e) => setField("medicalNotes", e.target.value)}
                 placeholder="Indicaciones, medicación, contactos…"
                 className={`${fieldControl} min-h-[90px] resize-y leading-[1.5]`}
               />

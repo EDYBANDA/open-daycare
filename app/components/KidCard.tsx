@@ -1,6 +1,9 @@
 import Link from "next/link";
 import type { Kid } from "@/app/data/kids";
 
+const cardClass =
+  "flex min-w-0 items-center gap-3.5 rounded-[18px] border border-[#ECE0D0] bg-[#FFFDF9] p-4 shadow-[0_4px_14px_-12px_rgba(120,90,60,.5)] transition-[border-color,transform] duration-150 hover:-translate-y-0.5 hover:border-[#F2A78E]";
+
 function parentsSubtitle(kid: Kid): string {
   const count = kid.parents.length;
   if (count === 0) return "sin padres vinculados";
@@ -8,12 +11,9 @@ function parentsSubtitle(kid: Kid): string {
   return `${count} padres vinculados`;
 }
 
-export function KidCard({ kid }: { kid: Kid }) {
-  return (
-    <Link
-      href={`/kids/${kid.id}`}
-      className="flex min-w-0 items-center gap-3.5 rounded-[18px] border border-[#ECE0D0] bg-[#FFFDF9] p-4 shadow-[0_4px_14px_-12px_rgba(120,90,60,.5)] transition-[border-color,transform] duration-150 hover:-translate-y-0.5 hover:border-[#F2A78E]"
-    >
+export function KidCard({ kid, href }: { kid: Kid; href?: string }) {
+  const content = (
+    <>
       <div
         className="flex size-12 shrink-0 items-center justify-center rounded-full font-display text-[19px] font-semibold"
         style={{ backgroundColor: kid.avatarBg, color: kid.avatarText }}
@@ -51,6 +51,16 @@ export function KidCard({ kid }: { kid: Kid }) {
           <path d="m9 18 6-6-6-6" />
         </svg>
       )}
+    </>
+  );
+
+  if (!href) {
+    return <div className={cardClass}>{content}</div>;
+  }
+
+  return (
+    <Link href={href} className={cardClass}>
+      {content}
     </Link>
   );
 }

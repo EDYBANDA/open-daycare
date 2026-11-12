@@ -53,7 +53,7 @@ export default function KidsPage() {
 
           <div className="grid grid-cols-2 gap-3.5">
             {kids.map((kid) => (
-              <KidCard key={kid.id} kid={kid} />
+              <KidCard key={kid.id} kid={kid} href={`/kids/${kid.id}`} />
             ))}
           </div>
         </div>
