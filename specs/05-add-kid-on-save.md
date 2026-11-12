@@ -1,6 +1,6 @@
 # SPEC 05 — Guardar niño nuevo desde el modal
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** SPEC 04
 > **Fecha:** 2026-11-11
 > **Objetivo:** Al presionar «Guardar» en el modal con datos válidos, crear el niño y mostrarlo en la grilla de `/kids` (persistido en localStorage), con validación en línea por campo.

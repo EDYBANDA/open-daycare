@@ -35,7 +35,8 @@ const AVATAR_COLORS = [
   { bg: "#C9B6E8", text: "#7B5FC0" },
 ];
 
-let memoryFallback: Kid[] = [];
+const emptyKids: Kid[] = [];
+let memoryFallback: Kid[] = emptyKids;
 
 function isCompleteBirthDate(value: string): boolean {
   return /^\d{2}\/\d{2}\/\d{4}$/.test(value);
@@ -128,24 +129,48 @@ export function buildKidFromForm(values: KidFormValues, kidCount = 0): Kid {
   };
 }
 
+let cachedKids: Kid[] | null = null;
+const listeners = new Set<() => void>();
+
+export function subscribeToKids(listener: () => void): () => void {
+  if (typeof window === "undefined") return () => {};
+  const handleStorage = () => {
+    cachedKids = null;
+    listener();
+  };
+  window.addEventListener("storage", handleStorage);
+  listeners.add(listener);
+  return () => {
+    listeners.delete(listener);
+    window.removeEventListener("storage", handleStorage);
+  };
+}
+
 export function loadStoredKids(): Kid[] {
-  if (typeof window === "undefined") return [];
+  if (typeof window === "undefined") return emptyKids;
+  if (cachedKids) return cachedKids;
   try {
     const raw = window.localStorage.getItem(KIDS_STORAGE_KEY);
-    if (!raw) return [];
+    if (!raw) {
+      cachedKids = emptyKids;
+      return cachedKids;
+    }
     const parsed: unknown = JSON.parse(raw);
-    return Array.isArray(parsed) ? (parsed as Kid[]) : [];
+    cachedKids = Array.isArray(parsed) ? (parsed as Kid[]) : emptyKids;
   } catch {
-    return memoryFallback;
+    cachedKids = memoryFallback;
   }
+  return cachedKids;
 }
 
 export function saveStoredKids(storedKids: Kid[]): void {
   memoryFallback = storedKids;
+  cachedKids = storedKids;
   if (typeof window === "undefined") return;
   try {
     window.localStorage.setItem(KIDS_STORAGE_KEY, JSON.stringify(storedKids));
   } catch {
     memoryFallback = storedKids;
   }
+  listeners.forEach((listener) => listener());
 }
