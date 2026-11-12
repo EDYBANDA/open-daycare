@@ -1,4 +1,4 @@
-# SPEC 06 — Vincular padre (modal con invitación persistida)
+﻿# SPEC 06 — Vincular padre (modal con invitación persistida)
 
 > **Estado:** Implementado
 > **Depende de:** SPEC 02
@@ -63,16 +63,16 @@ Persistencia: array JSON de `ParentInvite` bajo `PARENT_INVITES_STORAGE_KEY`. Si
 
 ## Criterios de aceptación
 
-- [ ] `npm run lint` no agrega errores (los 2 preexistentes de `support.js` siguen siendo los únicos) y `npm run build` completa sin errores.
-- [ ] El click en «Vincular otro padre» abre el modal con overlay y fondo sin scroll; X, Esc y click en overlay cierran; un click dentro del card no.
-- [ ] El modal replica el mockup: header con título + «a {nombre}» + X, callout azul, labels/placeholders exactos, pills con Mamá seleccionada, caja dashed amarilla y CTA naranja con ícono send.
-- [ ] El código mostrado tiene 5 caracteres y cambia en cada reapertura del modal.
-- [ ] Enviar con nombre vacío o email vacío/mal formado muestra error en línea (borde `#D9583C` + mensaje 12px) y el modal no cierra.
-- [ ] Enviar con datos válidos cierra el modal y agrega el padre al final de PADRES VINCULADOS: initial, «{parentesco} · invitación enviada» y badge PENDIENTE, con color de avatar de la paleta rotada.
-- [ ] Tras F5 el padre invitado persiste en `opendaycare:parent-invites:v1` sin duplicarse y no aparece en el perfil de otro niño.
-- [ ] Reabrir el modal muestra campos vacíos (Mamá seleccionada) y un código nuevo.
-- [ ] Captura 1280×800 del modal abierto coincide con `vincular-padre.dc.html` renderizado en layout, colores, tipografía y espaciados.
-- [ ] El card del modal tiene `role="dialog"`, `aria-modal="true"` y `aria-label="Vincular padre"`.
+- [x] `npm run lint` no agrega errores (los 2 preexistentes de `support.js` siguen siendo los únicos) y `npm run build` completa sin errores.
+- [x] El click en «Vincular otro padre» abre el modal con overlay y fondo sin scroll; X, Esc y click en overlay cierran; un click dentro del card no.
+- [x] El modal replica el mockup: header con título + «a {nombre}» + X, callout azul, labels/placeholders exactos, pills con Mamá seleccionada, caja dashed amarilla y CTA naranja con ícono send.
+- [x] El código mostrado tiene 5 caracteres y cambia en cada reapertura del modal.
+- [x] Enviar con nombre vacío o email vacío/mal formado muestra error en línea (borde `#D9583C` + mensaje 12px) y el modal no cierra.
+- [x] Enviar con datos válidos cierra el modal y agrega el padre al final de PADRES VINCULADOS: initial, «{parentesco} · invitación enviada» y badge PENDIENTE, con color de avatar de la paleta rotada.
+- [x] Tras F5 el padre invitado persiste en `opendaycare:parent-invites:v1` sin duplicarse y no aparece en el perfil de otro niño.
+- [x] Reabrir el modal muestra campos vacíos (Mamá seleccionada) y un código nuevo.
+- [x] Captura 1280×800 del modal abierto coincide con `vincular-padre.dc.html` renderizado en layout, colores, tipografía y espaciados.
+- [x] El card del modal tiene `role="dialog"`, `aria-modal="true"` y `aria-label="Vincular padre"`.
 
 ## Decisiones
 
