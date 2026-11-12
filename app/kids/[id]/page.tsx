@@ -134,7 +134,11 @@ export default async function KidProfilePage(
                 </svg>
                 Resumen del día
               </a>
-              <LinkedParentsCard parents={kid.parents} />
+              <LinkedParentsCard
+                kidId={kid.id}
+                kidName={kid.name}
+                parents={kid.parents}
+              />
             </div>
           </div>
         </div>
