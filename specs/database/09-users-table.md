@@ -126,15 +126,15 @@ where u.id = a.id
 
 ## Criterios de aceptación
 
-- [ ] `create_users` figura en el historial; `public.users` existe con exactamente las 10 columnas y los enums `user_role` (`staff`,`parent`,`admin`) y `user_status` (`pending`,`active`) están creados.
-- [ ] `id` referencia `auth.users` ON DELETE CASCADE; `daycare_id` es nullable y referencia `daycares` (NO ACTION); existe `users_daycare_id_idx`.
+- [x] `create_users` figura en el historial; `public.users` existe con exactamente las 10 columnas y los enums `user_role` (`staff`,`parent`,`admin`) y `user_status` (`pending`,`active`) están creados.
+- [x] `id` referencia `auth.users` ON DELETE CASCADE; `daycare_id` es nullable y referencia `daycares` (NO ACTION); existe `users_daycare_id_idx`.
 - [ ] Crear un auth user (dashboard) produce automáticamente su fila en `public.users` con `role='parent'`, `status='active'` y `full_name` desde metadata (fallback `''`) — verificado con Caro antes del UPDATE.
-- [ ] RLS habilitado con una única política: SELECT `to authenticated` (self OR same daycare) vía helper `current_daycare_id()` (`security definer`, `search_path=''`, execute revocado a `public`/`anon`, concedido a `authenticated`); sin políticas de INSERT/UPDATE/DELETE.
+- [x] RLS habilitado con una única política: SELECT `to authenticated` (self OR same daycare) vía helper `current_daycare_id()` (`security definer`, `search_path=''`, execute revocado a `public`/`anon`, concedido a `authenticated`); sin políticas de INSERT/UPDATE/DELETE.
 - [ ] `seed_staff_user` figura en el historial; Caro queda `role='staff'`, `full_name='Caro Giménez'`, `daycare_id` = Sala Soles, con `updated_at > created_at`.
 - [ ] Smoke test RLS: con rol `authenticated` y claims de Caro, `select * from public.users` devuelve exactamente 1 fila (la suya) — o el bloque queda documentado como pendiente si `execute_sql` no lo soporta.
-- [ ] `supabase/migrations/` contiene un `.sql` por migración nueva, con prefijo de versión idéntico al historial remoto.
-- [ ] Advisors sin findings nuevos atribuibles a `users`, sus funciones ni triggers.
-- [ ] `app/` sin cambios: el diff solo toca `specs/` y `supabase/`.
+- [x] `supabase/migrations/` contiene un `.sql` por migración nueva, con prefijo de versión idéntico al historial remoto.
+- [x] Advisors sin findings nuevos atribuibles a `users`, sus funciones ni triggers.
+- [x] `app/` sin cambios: el diff solo toca `specs/` y `supabase/`.
 
 ## Decisiones
 
