@@ -78,6 +78,7 @@ insert into public.daycares (id, name, address) values
 ```
 
 - Sin índices extra: tabla raíz pequeña; el índice del PK es suficiente.
+- Nota de verificación: además de las 2 migraciones previstas, el historial remoto incluye `harden_set_updated_at` (`20261113200402`) — endurece `set_updated_at()` con `set search_path = ''` (anti search-path hijacking) manteniendo `security invoker`. Espejada en el repo igual que las otras.
 - Convención del esquema de referencia: todo lo persistido va en inglés (enums, tags); los nombres y direcciones de guarderías son datos de dominio y se guardan tal cual.
 
 ## Plan de implementación
@@ -89,13 +90,13 @@ insert into public.daycares (id, name, address) values
 
 ## Criterios de aceptación
 
-- [ ] `create_daycares` figura en el historial de migraciones de Supabase y `public.daycares` existe con exactamente `id`, `name`, `address`, `created_at`, `updated_at`.
-- [ ] RLS habilitado en `daycares` y existe una única política: SELECT `to authenticated using (true)`; no hay políticas de INSERT/UPDATE/DELETE.
-- [ ] `public.set_updated_at()` es `security invoker` y el trigger `BEFORE UPDATE` está activo: un UPDATE de prueba cambia `updated_at` automáticamente.
-- [ ] `seed_daycares` figura en el historial; `select count(*)` sobre `daycares` = 5, incluyendo «Guardería Sala Soles».
-- [ ] `supabase/migrations/` contiene un archivo `.sql` por cada migración nueva, con prefijo de versión idéntico al del historial remoto y SQL coincidente.
-- [ ] Advisors de seguridad sin findings nuevos atribuibles a `daycares` y la tabla es accesible vía Data API para `authenticated` (o el GRANT quedó aplicado y documentado).
-- [ ] `app/` sin cambios: el diff del branch solo toca `specs/` y `supabase/`.
+- [x] `create_daycares` figura en el historial de migraciones de Supabase y `public.daycares` existe con exactamente `id`, `name`, `address`, `created_at`, `updated_at`.
+- [x] RLS habilitado en `daycares` y existe una única política: SELECT `to authenticated using (true)`; no hay políticas de INSERT/UPDATE/DELETE.
+- [x] `public.set_updated_at()` es `security invoker` y el trigger `BEFORE UPDATE` está activo: un UPDATE de prueba cambia `updated_at` automáticamente.
+- [x] `seed_daycares` figura en el historial; `select count(*)` sobre `daycares` = 5, incluyendo «Guardería Sala Soles».
+- [x] `supabase/migrations/` contiene un archivo `.sql` por cada migración nueva, con prefijo de versión idéntico al del historial remoto y SQL coincidente.
+- [x] Advisors de seguridad sin findings nuevos atribuibles a `daycares` y la tabla es accesible vía Data API para `authenticated` (o el GRANT quedó aplicado y documentado).
+- [x] `app/` sin cambios: el diff del branch solo toca `specs/` y `supabase/`.
 
 ## Decisiones
 
