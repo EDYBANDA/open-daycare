@@ -1,6 +1,6 @@
 # SPEC 08 — Tabla `daycares` y patrón de migraciones Supabase
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** — (primera spec de BD; las specs 01–07 son UI/localStorage)
 > **Fecha:** 2026-11-13
 > **Objetivo:** Crear la tabla raíz `daycares` en Supabase con su seed inicial, estableciendo el patrón de migraciones (MCP `apply_migration` + espejo en `supabase/migrations/`) que usarán todas las tablas futuras.
