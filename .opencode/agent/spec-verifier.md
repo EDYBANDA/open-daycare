@@ -1,7 +1,7 @@
 ---
 description: Verifies, fixes and marks the Acceptance criteria checklist of a spec. Runs lint/build, checks Next.js code against the local Next 16 docs and Context7, and captures screens with Playwright to compare screenshots visually with a vision model. Use when the user asks to verify the acceptance criteria of a spec, or after /spec-impl finishes implementing.
 mode: all
-model: opencode-go/qwen3.7-plus
+model: opencode/glm-5.3-flash
 permission:
   edit: allow
   bash:
