@@ -46,12 +46,25 @@ Known issue: `npm run lint` fails with 2 pre-existing errors in `references/pant
 
 - Playwright: screenshots y cualquier cosa relacionada con Playwright tienen que estar en la carpeta `.playwright-mcp`.
 - Context7: usar este MCP para traer la documentación actualizada del framework.
+- Supabase: herramientas MCP conectadas al proyecto (SQL, migraciones, logs, advisors, edge functions, etc.).
+
+## Supabase
+
+- Usar el MCP de Supabase para consultar/esquema/migraciones; inspeccionar las tablas existentes antes de cambiar el esquema.
+- Al depurar, revisar primero logs y advisors (seguridad/rendimiento) antes de hacer cambios.
+- Skills repo-local: `supabase` (`.agents/skills/supabase`) y `supabase-postgres-best-practices` (`.agents/skills/supabase-postgres-best-practices`) — cargarlas SIEMPRE antes de escribir o modificar algo en la base de datos (tablas, columnas, RLS, índices, triggers, migraciones, SQL).
+- Referencia de esquema (no implementado aún): `07-DB-Schema` (referencia de proyecto) — tablas, columnas y relaciones previstas.
 
 ## Spec Driven Development - Skills
 
 -/spec Usaremos esta habilidad para crear las especificaciones.
 -/spec-impl Usaremos esta skill para hacer las implementaciones.
 -/spec-verify Usaremos este comando para verificar los criterios de aceptación de una spec con el agente spec-verifier.
+
+## Skills de Supabase
+
+-/supabase Cualquier tarea que involucre Supabase (Database, Auth, Edge Functions, Realtime, Storage, RLS, migraciones, debugging).
+-/supabase-postgres-best-practices Cargar antes de escribir o cambiar algo en Postgres: esquema, RLS, índices, funciones, migraciones, rendimiento.
 
 ## Reglas de código
 
