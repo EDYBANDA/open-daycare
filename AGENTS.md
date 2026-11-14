@@ -51,6 +51,12 @@ Known issue: `npm run lint` fails with 2 pre-existing errors in `references/pant
 
 ## Supabase
 
+- Acceso a la base de datos desde la aplicación: usar SIEMPRE los paquetes oficiales de Supabase para Next.js (`@supabase/supabase-js` + `@supabase/ssr`, ya instalados). El MCP de Supabase es solo para tareas administrativas (SQL, esquema, migraciones, logs, advisors), nunca desde código de la app.
+  - `utils/supabase/server.ts` → `createClient(cookieStore)` para Server Components / Server Actions (con `cookies` de `next/headers`).
+  - `utils/supabase/client.ts` → `createClient()` para Client Components.
+  - `utils/supabase/middleware.ts` → `updateSession(request)` refresca la sesión de auth; se invoca desde `proxy.ts` en la raíz (en Next 16 el convenio `middleware.ts` se renombró a `proxy.ts`).
+  - Variables de entorno en `.env.local`: `NEXT_PUBLIC_SUPABASE_URL` y `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` (publishable key; nunca exponer `service_role` en el cliente).
+- Las queries desde la app corren con los roles `anon`/`authenticated`, por lo que RLS aplica: sin sesión activa, las tablas con RLS devuelven 0 filas (ej. `daycares`, `users`).
 - Usar el MCP de Supabase para consultar/esquema/migraciones; inspeccionar las tablas existentes antes de cambiar el esquema.
 - Al depurar, revisar primero logs y advisors (seguridad/rendimiento) antes de hacer cambios.
 - Skills repo-local: `supabase` (`.agents/skills/supabase`) y `supabase-postgres-best-practices` (`.agents/skills/supabase-postgres-best-practices`) — cargarlas SIEMPRE antes de escribir o modificar algo en la base de datos (tablas, columnas, RLS, índices, triggers, migraciones, SQL).
