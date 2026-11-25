@@ -68,15 +68,15 @@ type SidebarUser = {
 
 ## Criterios de aceptación
 
-- [ ] La BD responde por MCP y `caro@opendaycare.com` existe en `auth.users` con su fila `staff`/«Caro Giménez»/Sala Soles; los 3 criterios pendientes de SPEC 09 quedan marcados.
-- [ ] Sin sesión, `/`, `/kids` y `/kids/[id]` redirigen a `/login`.
-- [ ] Con sesión, `/login` y `/activar-cuenta` redirigen a `/`.
-- [ ] Contraseña incorrecta muestra «Email o contraseña incorrectos.» en línea y permanece en `/login`.
-- [ ] Login con las credenciales de Caro llega a `/` con sesión; F5 mantiene la sesión (refresh del proxy).
-- [ ] El sidebar muestra «Caro Giménez», «Personal» e initial «C» desde `public.users` (no literales).
-- [ ] «Cerrar sesión» desloguea y redirige a `/login`; tras el logout las rutas privadas vuelven a redirigir a `/login`.
-- [ ] `npm run lint` no agrega errores (los 2 preexistentes de `support.js` siguen siendo los únicos) y `npm run build` completa sin errores.
-- [ ] Capturas del flujo completo en `.playwright-mcp/`.
+- [x] La BD responde por MCP y `caro@opendaycare.com` existe en `auth.users` con su fila `staff`/«Caro Giménez»/Sala Soles; los 3 criterios pendientes de SPEC 09 quedan marcados.
+- [x] Sin sesión, `/`, `/kids` y `/kids/[id]` redirigen a `/login`.
+- [x] Con sesión, `/login` y `/activar-cuenta` redirigen a `/`.
+- [x] Contraseña incorrecta muestra «Email o contraseña incorrectos.» en línea y permanece en `/login`.
+- [x] Login con las credenciales de Caro llega a `/` con sesión; F5 mantiene la sesión (refresh del proxy).
+- [x] El sidebar muestra «Caro Giménez», «Personal» e initial «C» desde `public.users` (no literales).
+- [x] «Cerrar sesión» desloguea y redirige a `/login`; tras el logout las rutas privadas vuelven a redirigir a `/login`.
+- [x] `npm run lint` no agrega errores (los 2 preexistentes de `support.js` siguen siendo los únicos) y `npm run build` completa sin errores.
+- [x] Capturas del flujo completo en `.playwright-mcp/`.
 
 ## Decisiones
 
