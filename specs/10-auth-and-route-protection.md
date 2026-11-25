@@ -1,6 +1,6 @@
 # SPEC 10 — Autenticación email+password y protección de rutas
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** SPEC 03, SPEC 09
 > **Fecha:** 2026-11-25
 > **Objetivo:** Implementar autenticación real email+password contra Supabase (login vía Server Action y logout real), proteger las rutas privadas redirigiendo desde `proxy.ts` y mostrar el usuario real de `public.users` en el sidebar.

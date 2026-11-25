@@ -1,12 +1,19 @@
+import { Suspense } from "react";
+
 import { Sidebar } from "@/app/components/Sidebar";
 import { FeedHeader } from "@/app/components/FeedHeader";
 import { QuickCreateCard } from "@/app/components/QuickCreateCard";
 import { FeedList } from "@/app/components/FeedList";
+import { UserBlock, UserBlockSkeleton } from "@/app/components/UserBlock";
 
 export default function Home() {
   return (
     <div className="flex min-h-screen bg-[#F6ECDF]">
-      <Sidebar active="feed" />
+      <Sidebar active="feed">
+        <Suspense fallback={<UserBlockSkeleton />}>
+          <UserBlock />
+        </Suspense>
+      </Sidebar>
       <main className="h-screen min-w-0 flex-1 overflow-y-auto">
         <div className="mx-auto w-full max-w-[760px] px-10 pb-20 pt-[34px]">
           <FeedHeader />
