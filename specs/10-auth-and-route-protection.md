@@ -1,6 +1,6 @@
 # SPEC 10 — Autenticación email+password y protección de rutas
 
-> **Estado:** Draft
+> **Estado:** Aprobado
 > **Depende de:** SPEC 03, SPEC 09
 > **Fecha:** 2026-11-25
 > **Objetivo:** Implementar autenticación real email+password contra Supabase (login vía Server Action y logout real), proteger las rutas privadas redirigiendo desde `proxy.ts` y mostrar el usuario real de `public.users` en el sidebar.
@@ -53,7 +53,7 @@ const PUBLIC_PATHS = ["/login", "/activar-cuenta"];
 type SidebarUser = {
   fullName: string; // users.full_name; fallback "Usuario"
   roleLabel: string; // staff→"Personal", parent→"Familia", admin→"Admin"
-  initial: string;   // primera letra de full_name
+  initial: string; // primera letra de full_name
 };
 ```
 
@@ -95,13 +95,13 @@ type SidebarUser = {
 
 ## Riesgos
 
-| Riesgo | Mitigación |
-| --- | --- |
+| Riesgo                                                                                    | Mitigación                                                                         |
+| ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | BD inaccesible por MCP («Database is possibly not accessible») — posible proyecto pausado | Paso 1 de prerrequisito; el usuario reactiva desde el dashboard antes de continuar |
-| `redirect()` dentro de `try/catch` traga `NEXT_REDIRECT` y rompe el login | Redirects siempre fuera de try/catch en las actions |
-| Suspense del UserBlock parpadea en cada navegación | Fallback esqueleto mínimo; query de una sola fila cubierta por RLS self (SPEC 09) |
-| RLS de `users` no devuelve la fila propia (policy rota) | Smoke test en el paso 1 con la sesión real de Caro |
-| Cache del router cliente tras login/logout | `revalidatePath("/", "layout")` en ambas actions |
+| `redirect()` dentro de `try/catch` traga `NEXT_REDIRECT` y rompe el login                 | Redirects siempre fuera de try/catch en las actions                                |
+| Suspense del UserBlock parpadea en cada navegación                                        | Fallback esqueleto mínimo; query de una sola fila cubierta por RLS self (SPEC 09)  |
+| RLS de `users` no devuelve la fila propia (policy rota)                                   | Smoke test en el paso 1 con la sesión real de Caro                                 |
+| Cache del router cliente tras login/logout                                                | `revalidatePath("/", "layout")` en ambas actions                                   |
 
 ## Lo que **no** está en esta spec
 
