@@ -1,6 +1,6 @@
 # SPEC 10 — Autenticación email+password y protección de rutas
 
-> **Estado:** Draft
+> **Estado:** Implementado
 > **Depende de:** SPEC 03, SPEC 09
 > **Fecha:** 2026-11-25
 > **Objetivo:** Implementar autenticación real email+password contra Supabase (login vía Server Action y logout real), proteger las rutas privadas redirigiendo desde `proxy.ts` y mostrar el usuario real de `public.users` en el sidebar.
@@ -53,7 +53,7 @@ const PUBLIC_PATHS = ["/login", "/activar-cuenta"];
 type SidebarUser = {
   fullName: string; // users.full_name; fallback "Usuario"
   roleLabel: string; // staff→"Personal", parent→"Familia", admin→"Admin"
-  initial: string;   // primera letra de full_name
+  initial: string; // primera letra de full_name
 };
 ```
 
@@ -68,15 +68,15 @@ type SidebarUser = {
 
 ## Criterios de aceptación
 
-- [ ] La BD responde por MCP y `caro@opendaycare.com` existe en `auth.users` con su fila `staff`/«Caro Giménez»/Sala Soles; los 3 criterios pendientes de SPEC 09 quedan marcados.
-- [ ] Sin sesión, `/`, `/kids` y `/kids/[id]` redirigen a `/login`.
-- [ ] Con sesión, `/login` y `/activar-cuenta` redirigen a `/`.
-- [ ] Contraseña incorrecta muestra «Email o contraseña incorrectos.» en línea y permanece en `/login`.
-- [ ] Login con las credenciales de Caro llega a `/` con sesión; F5 mantiene la sesión (refresh del proxy).
-- [ ] El sidebar muestra «Caro Giménez», «Personal» e initial «C» desde `public.users` (no literales).
-- [ ] «Cerrar sesión» desloguea y redirige a `/login`; tras el logout las rutas privadas vuelven a redirigir a `/login`.
-- [ ] `npm run lint` no agrega errores (los 2 preexistentes de `support.js` siguen siendo los únicos) y `npm run build` completa sin errores.
-- [ ] Capturas del flujo completo en `.playwright-mcp/`.
+- [x] La BD responde por MCP y `caro@opendaycare.com` existe en `auth.users` con su fila `staff`/«Caro Giménez»/Sala Soles; los 3 criterios pendientes de SPEC 09 quedan marcados.
+- [x] Sin sesión, `/`, `/kids` y `/kids/[id]` redirigen a `/login`.
+- [x] Con sesión, `/login` y `/activar-cuenta` redirigen a `/`.
+- [x] Contraseña incorrecta muestra «Email o contraseña incorrectos.» en línea y permanece en `/login`.
+- [x] Login con las credenciales de Caro llega a `/` con sesión; F5 mantiene la sesión (refresh del proxy).
+- [x] El sidebar muestra «Caro Giménez», «Personal» e initial «C» desde `public.users` (no literales).
+- [x] «Cerrar sesión» desloguea y redirige a `/login`; tras el logout las rutas privadas vuelven a redirigir a `/login`.
+- [x] `npm run lint` no agrega errores (los 2 preexistentes de `support.js` siguen siendo los únicos) y `npm run build` completa sin errores.
+- [x] Capturas del flujo completo en `.playwright-mcp/`.
 
 ## Decisiones
 
@@ -95,13 +95,13 @@ type SidebarUser = {
 
 ## Riesgos
 
-| Riesgo | Mitigación |
-| --- | --- |
+| Riesgo                                                                                    | Mitigación                                                                         |
+| ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | BD inaccesible por MCP («Database is possibly not accessible») — posible proyecto pausado | Paso 1 de prerrequisito; el usuario reactiva desde el dashboard antes de continuar |
-| `redirect()` dentro de `try/catch` traga `NEXT_REDIRECT` y rompe el login | Redirects siempre fuera de try/catch en las actions |
-| Suspense del UserBlock parpadea en cada navegación | Fallback esqueleto mínimo; query de una sola fila cubierta por RLS self (SPEC 09) |
-| RLS de `users` no devuelve la fila propia (policy rota) | Smoke test en el paso 1 con la sesión real de Caro |
-| Cache del router cliente tras login/logout | `revalidatePath("/", "layout")` en ambas actions |
+| `redirect()` dentro de `try/catch` traga `NEXT_REDIRECT` y rompe el login                 | Redirects siempre fuera de try/catch en las actions                                |
+| Suspense del UserBlock parpadea en cada navegación                                        | Fallback esqueleto mínimo; query de una sola fila cubierta por RLS self (SPEC 09)  |
+| RLS de `users` no devuelve la fila propia (policy rota)                                   | Smoke test en el paso 1 con la sesión real de Caro                                 |
+| Cache del router cliente tras login/logout                                                | `revalidatePath("/", "layout")` en ambas actions                                   |
 
 ## Lo que **no** está en esta spec
 

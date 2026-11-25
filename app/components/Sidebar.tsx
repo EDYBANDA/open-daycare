@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useState, type ReactNode } from "react";
 import { CreatePostModal } from "@/app/components/CreatePostModal";
-import { currentUser, room } from "@/app/data/feed";
+import { signOutAction } from "@/app/login/actions";
+import { room } from "@/app/data/feed";
 
 export type SidebarActive = "feed" | "kids";
 
@@ -56,7 +57,13 @@ const navItems: NavItem[] = [
   },
 ];
 
-export function Sidebar({ active }: { active: SidebarActive }) {
+export function Sidebar({
+  active,
+  children,
+}: {
+  active: SidebarActive;
+  children?: ReactNode;
+}) {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
@@ -149,33 +156,27 @@ export function Sidebar({ active }: { active: SidebarActive }) {
 
       <div className="mt-2.5 border-t border-[#ECE0D0] pt-3.5">
         <div className="flex items-center gap-[11px] px-2 py-1.5">
-          <div className="flex size-[38px] shrink-0 items-center justify-center rounded-full bg-[#F2937A] font-display text-[16px] font-semibold text-white">
-            {currentUser.initial}
-          </div>
-          <div className="min-w-0 flex-1">
-            <div className="text-[14px] font-extrabold text-[#3F362E]">
-              {currentUser.name}
-            </div>
-            <div className="text-[12px] text-[#A89A8B]">{currentUser.role}</div>
-          </div>
-          <Link
-            href="/login"
-            title="Cerrar sesión"
-            className="flex size-8 shrink-0 items-center justify-center rounded-[10px] bg-[#F6ECDF] text-[#94887B]"
-          >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+          {children}
+          <form action={signOutAction}>
+            <button
+              type="submit"
+              title="Cerrar sesión"
+              className="flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-[10px] bg-[#F6ECDF] text-[#94887B]"
             >
-              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" />
-            </svg>
-          </Link>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" />
+              </svg>
+            </button>
+          </form>
         </div>
       </div>
       </aside>

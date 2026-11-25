@@ -1,6 +1,17 @@
+"use client";
+
 import Link from "next/link";
+import { useActionState } from "react";
+
+import { signInAction } from "./actions";
+
+const fieldMessage = "mt-1 block text-[12px] text-[#D9583C]";
 
 export default function LoginPage() {
+  const [state, formAction, isPending] = useActionState(signInAction, {
+    error: null,
+  });
+
   return (
     <div className="grid min-h-screen grid-cols-[1.05fr_1fr] bg-[#FBF4EC]">
       <div className="relative flex flex-col justify-between overflow-hidden bg-[linear-gradient(155deg,#F6A98E_0%,#F2937A_45%,#EC7E62_100%)] p-[56px_60px] text-white">
@@ -54,34 +65,44 @@ export default function LoginPage() {
             Ingresá para ver el día de hoy.
           </p>
 
-          <div className="mb-[8px] text-[12px] font-bold tracking-[0.7px] text-[#94887B]">
-            EMAIL
-          </div>
-          <input
-            type="email"
-            defaultValue="caro@opendaycare.com"
-            className="mb-[18px] w-full rounded-[14px] border-[1.5px] border-[#EADFD0] bg-white px-4 py-[14px] text-[15px] text-[#3F362E] outline-none placeholder:text-[#B6A99B]"
-          />
-          <div className="mb-[8px] text-[12px] font-bold tracking-[0.7px] text-[#94887B]">
-            CONTRASEÑA
-          </div>
-          <input
-            type="password"
-            placeholder="••••••••"
-            className="mb-[10px] w-full rounded-[14px] border-[1.5px] border-[#EADFD0] bg-white px-4 py-[14px] text-[15px] text-[#3F362E] outline-none placeholder:text-[#B6A99B]"
-          />
-          <div className="mb-5 text-right">
-            <span className="cursor-pointer text-[13.5px] font-bold text-[#C5503A]">
-              ¿Olvidaste tu contraseña?
-            </span>
-          </div>
+          <form action={formAction}>
+            <div className="mb-[8px] text-[12px] font-bold tracking-[0.7px] text-[#94887B]">
+              EMAIL
+            </div>
+            <input
+              type="email"
+              name="email"
+              required
+              className="mb-[18px] w-full rounded-[14px] border-[1.5px] border-[#EADFD0] bg-white px-4 py-[14px] text-[15px] text-[#3F362E] outline-none placeholder:text-[#B6A99B]"
+            />
+            <div className="mb-[8px] text-[12px] font-bold tracking-[0.7px] text-[#94887B]">
+              CONTRASEÑA
+            </div>
+            <input
+              type="password"
+              name="password"
+              required
+              placeholder="••••••••"
+              className="mb-[10px] w-full rounded-[14px] border-[1.5px] border-[#EADFD0] bg-white px-4 py-[14px] text-[15px] text-[#3F362E] outline-none placeholder:text-[#B6A99B]"
+            />
+            <div className="mb-5 text-right">
+              <span className="cursor-pointer text-[13.5px] font-bold text-[#C5503A]">
+                ¿Olvidaste tu contraseña?
+              </span>
+            </div>
 
-          <Link
-            href="/"
-            className="block w-full rounded-[15px] bg-[linear-gradient(180deg,#F4977E,#EE8164)] py-[15px] text-center text-[16px] font-extrabold text-white shadow-[0_10px_22px_-8px_rgba(238,129,100,.7)]"
-          >
-            Iniciar sesión
-          </Link>
+            <button
+              type="submit"
+              disabled={isPending}
+              className="block w-full rounded-[15px] bg-[linear-gradient(180deg,#F4977E,#EE8164)] py-[15px] text-center text-[16px] font-extrabold text-white shadow-[0_10px_22px_-8px_rgba(238,129,100,.7)] disabled:cursor-not-allowed disabled:opacity-70"
+            >
+              {isPending ? "Iniciando sesión…" : "Iniciar sesión"}
+            </button>
+
+            {state.error && (
+              <p className={`${fieldMessage} mt-3 text-center`}>{state.error}</p>
+            )}
+          </form>
 
           <p className="m-0 mt-6 text-center text-[14.5px] text-[#94887B]">
             ¿Te invitó la guardería?{" "}
