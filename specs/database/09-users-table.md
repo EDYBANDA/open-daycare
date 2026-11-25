@@ -1,6 +1,6 @@
 # SPEC 09 — Tabla `users`, enums y provisioning de perfil
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** SPEC 08 (tabla `daycares` sembrada + patrón de migraciones MCP/espejo)
 > **Fecha:** 2026-11-13
 > **Objetivo:** Crear la tabla `public.users` con sus enums `user_role`/`user_status`, el trigger de provisioning sobre `auth.users` y RLS scoped por guardería, dejando sembrado el usuario staff de prueba Caro Giménez en Sala Soles.
@@ -128,11 +128,11 @@ where u.id = a.id
 
 - [x] `create_users` figura en el historial; `public.users` existe con exactamente las 10 columnas y los enums `user_role` (`staff`,`parent`,`admin`) y `user_status` (`pending`,`active`) están creados.
 - [x] `id` referencia `auth.users` ON DELETE CASCADE; `daycare_id` es nullable y referencia `daycares` (NO ACTION); existe `users_daycare_id_idx`.
-- [x] Crear un auth user (dashboard) produce automáticamente su fila en `public.users` con `role='parent'`, `status='active'` y `full_name` desde metadata (fallback `''`) — verificado con Caro antes del UPDATE. *Nota 2026-11-25: el auth user se creó vía migración SQL `seed_caro_auth_user` (20261113234753) en lugar del dashboard; el trigger disparó igual: fila de perfil en el mismo instante (23:47:53 UTC), nace `parent`/`active`/`full_name=''`.*
+- [x] Crear un auth user (dashboard) produce automáticamente su fila en `public.users` con `role='parent'`, `status='active'` y `full_name` desde metadata (fallback `''`) — verificado con Caro antes del UPDATE. _Nota 2026-11-25: el auth user se creó vía migración SQL `seed_caro_auth_user` (20261113234753) en lugar del dashboard; el trigger disparó igual: fila de perfil en el mismo instante (23:47:53 UTC), nace `parent`/`active`/`full_name=''`._
 - [x] RLS habilitado con una única política: SELECT `to authenticated` (self OR same daycare) vía helper `current_daycare_id()` (`security definer`, `search_path=''`, execute revocado a `public`/`anon`, concedido a `authenticated`); sin políticas de INSERT/UPDATE/DELETE.
-- [x] `seed_staff_user` figura en el historial; Caro queda `role='staff'`, `full_name='Caro Giménez'`, `daycare_id` = Sala Soles, con `updated_at > created_at`. *Nota 2026-11-25: v1 (20261113234100) fue no-op —corrió antes de que existiera el auth user—; `seed_staff_user_v2` (20261113234808) hizo el seed real. Verificado por SQL.*
-- [x] Smoke test RLS: con rol `authenticated` y claims de Caro, `select * from public.users` devuelve exactamente 1 fila (la suya) — o el bloque queda documentado como pendiente si `execute_sql` no lo soporta. *Nota 2026-11-25: verificado vía `execute_sql` (`set local role authenticated` + claims). Devuelve 2 filas — Caro (rama self) + EDISON BANDA (rama same-daycare, comparte Sala Soles) — comportamiento correcto por diseño de la policy; el criterio original asumía que Caro era la única con `daycare_id`. Anon: 0 filas.*
-- [x] `supabase/migrations/` contiene un `.sql` por migración nueva, con prefijo de versión idéntico al historial remoto. *Nota 2026-11-25: se agregan los espejos de `seed_caro_auth_user`, `seed_staff_user_v2` (reconstruidos — el historial remoto no guarda el SQL original, verificados contra el estado de la BD) y `harden_rls_auto_enable` (20261125213551).*
+- [x] `seed_staff_user` figura en el historial; Caro queda `role='staff'`, `full_name='Caro Giménez'`, `daycare_id` = Sala Soles, con `updated_at > created_at`. _Nota 2026-11-25: v1 (20261113234100) fue no-op —corrió antes de que existiera el auth user—; `seed_staff_user_v2` (20261113234808) hizo el seed real. Verificado por SQL._
+- [x] Smoke test RLS: con rol `authenticated` y claims de Caro, `select * from public.users` devuelve exactamente 1 fila (la suya) — o el bloque queda documentado como pendiente si `execute_sql` no lo soporta. _Nota 2026-11-25: verificado vía `execute_sql` (`set local role authenticated` + claims). Devuelve 2 filas — Caro (rama self) + EDISON BANDA (rama same-daycare, comparte Sala Soles) — comportamiento correcto por diseño de la policy; el criterio original asumía que Caro era la única con `daycare_id`. Anon: 0 filas._
+- [x] `supabase/migrations/` contiene un `.sql` por migración nueva, con prefijo de versión idéntico al historial remoto. _Nota 2026-11-25: se agregan los espejos de `seed_caro_auth_user`, `seed_staff_user_v2` (reconstruidos — el historial remoto no guarda el SQL original, verificados contra el estado de la BD) y `harden_rls_auto_enable` (20261125213551)._
 - [x] Advisors sin findings nuevos atribuibles a `users`, sus funciones ni triggers.
 - [x] `app/` sin cambios: el diff solo toca `specs/` y `supabase/`.
 
